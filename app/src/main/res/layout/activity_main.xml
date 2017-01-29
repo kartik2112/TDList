@@ -34,6 +34,7 @@
             android:background="@color/colorPrimaryComplementAlpha"
             android:id="@+id/AddTaskEditText"
             android:hint="Add A Task"
+            android:inputType="textCapWords"
             android:textColorHint="@color/colorPrimary"
             android:layout_width="0dp"
             android:layout_weight="4"
