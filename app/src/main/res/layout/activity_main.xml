@@ -48,7 +48,6 @@
             android:background="@color/colorPrimaryDarkComplementAlpha"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:enabled="false"
             android:text="+"
             android:textSize="30dp"
             android:layout_height="50dp" />
