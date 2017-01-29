@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.sk.tdlist.MainActivity"
+    android:background="@mipmap/bg"
+    android:animateLayoutChanges="true">
+
+    <TextView
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/HeadingText"
+        android:gravity="center_horizontal"
+        android:text="To Do List"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        android:fontFamily="cursive"
+        android:textColor="@color/colorPrimaryComplement"
+        android:background="@color/colorPrimary"
+        android:padding="40dp"/>
+    <LinearLayout
+        android:id="@+id/AddTaskLinearLyt"
+        android:layout_below="@id/HeadingText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="20dp"
+        android:weightSum="5">
+        <EditText
+            android:layout_gravity="center_vertical"
+            android:background="@color/colorPrimaryComplementAlpha"
+            android:id="@+id/AddTaskEditText"
+            android:hint="Add A Task"
+            android:textColorHint="@color/colorPrimary"
+            android:layout_width="0dp"
+            android:layout_weight="4"
+            android:layout_marginRight="20dp"
+            android:paddingLeft="10dp"
+            android:layout_height="40dp"
+            android:focusableInTouchMode="true"/>
+        <Button
+            android:layout_gravity="center_vertical"
+            android:id="@+id/AddTaskButton"
+            android:background="@color/colorPrimaryDarkComplementAlpha"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:enabled="false"
+            android:text="+"
+            android:textSize="30dp"
+            android:layout_height="50dp" />
+    </LinearLayout>
+
+    <ListView
+        android:background="@color/colorPrimaryComplementAlpha"
+        android:layout_below="@id/AddTaskLinearLyt"
+        android:id="@+id/MainListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_marginTop="0dp"></ListView>
+
+
+</RelativeLayout>
