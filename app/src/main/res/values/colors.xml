@@ -5,5 +5,5 @@
     <color name="colorPrimaryComplement">#adf5e7</color>
     <color name="colorPrimaryComplementAlpha">#8cadf5e7</color>
     <color name="colorPrimaryDarkComplementAlpha">#8c14dccf</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#ff4081</color>
 </resources>
