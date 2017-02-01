@@ -1,12 +1,17 @@
 package com.sk.tdlist;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.design.widget.BaseTransientBottomBar;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -14,13 +19,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
+import android.support.design.widget.Snackbar;
 
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
 
 
     private List<String> mainList=new Vector<String>();
@@ -29,6 +35,7 @@ public class MainActivity extends Activity {
     private EditText addTaskEditText=null;
     private Button addTaskButton=null;
     private SQLiteDatabase sqlDB=null;
+    private final int REQUEST_CODE_DELETE=1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,12 +67,33 @@ public class MainActivity extends Activity {
 
         mainListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                sqlDB.execSQL("DELETE FROM ToDoList WHERE Task='"+mainList.get(position)+"'");
-                mainList.remove(position);
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+
+                final String delElem=mainList.remove(position);
                 ad.notifyDataSetChanged();
+
+                final Snackbar deleteSB=Snackbar.make(view,"Task deleted",Snackbar.LENGTH_LONG);
+                deleteSB.setAction("UNDO", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mainList.add(position,delElem);
+                        ad.notifyDataSetChanged();
+                    }
+                });
+                deleteSB.setActionTextColor(getResources().getColor(R.color.colorAccent));
+
+                deleteSB.addCallback(new Snackbar.Callback(){
+                    @Override
+                    public void onDismissed(Snackbar transientBottomBar, int event) {
+                        sqlDB.execSQL("DELETE FROM ToDoList WHERE Task='"+mainList.get(position)+"'");
+                    }
+                });
+
+                deleteSB.show();
+
             }
         });
+
 
         addTaskEditText=(EditText) findViewById(R.id.AddTaskEditText);
         addTaskButton=(Button) findViewById(R.id.AddTaskButton);

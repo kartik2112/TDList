@@ -19,7 +19,7 @@
         android:textStyle="bold"
         android:fontFamily="cursive"
         android:textColor="@color/colorPrimaryComplement"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorPrimaryDarkAlpha"
         android:padding="40dp"/>
     <LinearLayout
         android:id="@+id/AddTaskLinearLyt"
@@ -35,7 +35,7 @@
             android:id="@+id/AddTaskEditText"
             android:hint="Add A Task"
             android:inputType="textCapWords"
-            android:textColorHint="@color/colorPrimary"
+            android:textColorHint="@android:color/background_light"
             android:layout_width="0dp"
             android:layout_weight="4"
             android:layout_marginRight="20dp"
