@@ -71,23 +71,24 @@ public class MainActivity extends AppCompatActivity {
 
                 final String delElem=mainList.remove(position);
                 ad.notifyDataSetChanged();
-
+                final BaseTransientBottomBar.BaseCallback bc=new Snackbar.Callback(){
+                    @Override
+                    public void onDismissed(Snackbar transientBottomBar, int event) {
+                        sqlDB.execSQL("DELETE FROM ToDoList WHERE Task='"+delElem+"'");
+                    }
+                };
                 final Snackbar deleteSB=Snackbar.make(view,"Task deleted",Snackbar.LENGTH_LONG);
                 deleteSB.setAction("UNDO", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         mainList.add(position,delElem);
                         ad.notifyDataSetChanged();
+                        deleteSB.removeCallback(bc);
                     }
                 });
                 deleteSB.setActionTextColor(getResources().getColor(R.color.colorAccent));
 
-                deleteSB.addCallback(new Snackbar.Callback(){
-                    @Override
-                    public void onDismissed(Snackbar transientBottomBar, int event) {
-                        sqlDB.execSQL("DELETE FROM ToDoList WHERE Task='"+mainList.get(position)+"'");
-                    }
-                });
+                deleteSB.addCallback(bc);
 
                 deleteSB.show();
 
