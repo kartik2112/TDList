@@ -1,21 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
-    android:padding="10dp">
-    <ImageView
-        android:id="@+id/delIcon"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@mipmap/del_icon"
-        android:layout_alignParentRight="true"/>
+    android:padding="10dp"
+    android:orientation="horizontal"
+    android:weightSum="10">
     <CheckBox
+        android:layout_weight="1"
         android:id="@+id/chckBox"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:gravity="center_vertical|center_horizontal"
-        android:layout_toLeftOf="@id/delIcon"
         android:layout_marginRight="10dp"/>
     <TextView
+        android:layout_weight="8"
         android:id="@+id/txtView"
         android:text="Lorem Ipsum Doler"
         android:textColor="@android:color/background_light"
@@ -23,6 +20,13 @@
         android:layout_height="40dp"
         android:textSize="15sp"
         android:gravity="center_vertical"
-        android:layout_toLeftOf="@id/chckBox"
         android:layout_marginRight="20dp"/>
-</RelativeLayout>
+
+    <ImageView
+        android:layout_weight="1"
+        android:id="@+id/delIcon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@mipmap/del_icon"
+        android:layout_alignParentRight="true"/>
+</LinearLayout>
