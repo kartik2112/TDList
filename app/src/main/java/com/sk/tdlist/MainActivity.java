@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
     private EditText addTaskEditText=null;
     private Button addTaskButton=null;
     private SQLiteDatabase sqlDB=null;
-    private final int REQUEST_CODE_DELETE=1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

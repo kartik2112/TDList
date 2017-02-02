@@ -89,9 +89,11 @@ public class TaskAdapter extends ArrayAdapter<TaskItem> {
             @Override
             public void onClick(View view) {
                 if(viewHolder.cbox.isChecked()){
+                    dataModel.setStatus(true);
                     sqlDB.execSQL("UPDATE ToDoList SET Status='true' WHERE Task='"+dataModel.getTask()+"'");
                 }
                 else{
+                    dataModel.setStatus(false);
                     sqlDB.execSQL("UPDATE ToDoList SET Status='false' WHERE Task='"+dataModel.getTask()+"'");
                 }
             }
@@ -107,7 +109,7 @@ public class TaskAdapter extends ArrayAdapter<TaskItem> {
                 final int positionOfTaskInList=dataSet.indexOf(dataModel);
                 final TaskItem delElem=dataSet.remove(positionOfTaskInList);
                 notifyDataSetChanged();
-                sqlDB.execSQL("DELETE FROM ToDoList WHERE Task='"+delElem+"'");
+                sqlDB.execSQL("DELETE FROM ToDoList WHERE Task='"+delElem.getTask()+"'");
 
 
                 /**
@@ -119,7 +121,7 @@ public class TaskAdapter extends ArrayAdapter<TaskItem> {
                     public void onClick(View v) {
                         dataSet.add(positionOfTaskInList,delElem);
                         notifyDataSetChanged();
-                        sqlDB.execSQL("INSERT INTO ToDoList VALUES('"+delElem+"','"+delElem.getStatus()+"')");
+                        sqlDB.execSQL("INSERT INTO ToDoList VALUES('"+delElem.getTask()+"','"+delElem.getStatus()+"')");
                         //deleteSB.removeCallback(bc);
                     }
                 });
