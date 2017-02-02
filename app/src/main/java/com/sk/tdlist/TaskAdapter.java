@@ -27,8 +27,8 @@ import static android.content.Context.MODE_PRIVATE;
  * http://www.journaldev.com/10416/android-listview-with-custom-adapter-example-tutorial
  */
 
-public class TaskAdapter extends ArrayAdapter<String> {
-    private ArrayList<String> dataSet;
+public class TaskAdapter extends ArrayAdapter<TaskItem> {
+    private ArrayList<TaskItem> dataSet;
     private SQLiteDatabase sqlDB;
 
     Context mContext;
@@ -41,7 +41,7 @@ public class TaskAdapter extends ArrayAdapter<String> {
     }
 
 
-    public TaskAdapter(ArrayList<String> data, Context context,SQLiteDatabase sqlDB) {
+    public TaskAdapter(ArrayList<TaskItem> data, Context context,SQLiteDatabase sqlDB) {
         super(context, R.layout.task_list_row_item, data);
         this.dataSet = data;
         this.mContext=context;
@@ -54,9 +54,9 @@ public class TaskAdapter extends ArrayAdapter<String> {
     public View getView(int position, View convertView, ViewGroup parent) {
 //        super.getView(position, convertView, parent);
         // Get the data item for this position
-        final String dataModel = getItem(position);
+        final TaskItem dataModel = getItem(position);
         // Check if an existing view is being reused, otherwise inflate the view
-        ViewHolder viewHolder; // view lookup cache stored in tag
+        final ViewHolder viewHolder; // view lookup cache stored in tag
 
         final View result;
 
@@ -82,7 +82,21 @@ public class TaskAdapter extends ArrayAdapter<String> {
         result.startAnimation(animation);
         lastPosition = position;
 
-        viewHolder.taskName.setText(dataModel);
+        viewHolder.taskName.setText(dataModel.getTask());
+        viewHolder.cbox.setChecked(dataModel.getStatus());
+
+        viewHolder.cbox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(viewHolder.cbox.isChecked()){
+                    sqlDB.execSQL("UPDATE ToDoList SET Status='true' WHERE Task='"+dataModel.getTask()+"'");
+                }
+                else{
+                    sqlDB.execSQL("UPDATE ToDoList SET Status='false' WHERE Task='"+dataModel.getTask()+"'");
+                }
+            }
+        });
+
         viewHolder.img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -91,7 +105,7 @@ public class TaskAdapter extends ArrayAdapter<String> {
                  * Code for adding Task is in MainActivity.java
                  */
                 final int positionOfTaskInList=dataSet.indexOf(dataModel);
-                final String delElem=dataSet.remove(positionOfTaskInList);
+                final TaskItem delElem=dataSet.remove(positionOfTaskInList);
                 notifyDataSetChanged();
                 sqlDB.execSQL("DELETE FROM ToDoList WHERE Task='"+delElem+"'");
 
@@ -105,7 +119,7 @@ public class TaskAdapter extends ArrayAdapter<String> {
                     public void onClick(View v) {
                         dataSet.add(positionOfTaskInList,delElem);
                         notifyDataSetChanged();
-                        sqlDB.execSQL("INSERT INTO ToDoList VALUES('"+delElem+"')");
+                        sqlDB.execSQL("INSERT INTO ToDoList VALUES('"+delElem+"','"+delElem.getStatus()+"')");
                         //deleteSB.removeCallback(bc);
                     }
                 });
@@ -118,25 +132,6 @@ public class TaskAdapter extends ArrayAdapter<String> {
         // Return the completed view to render on screen
         return convertView;
     }
-
-
-    /*@Override
-    public void onClick(View v) {
-
-        int position=(Integer) v.getTag();
-        Object object= getItem(position);
-        DataModel dataModel=(DataModel)object;
-
-        switch (v.getId())
-        {
-            case R.id.item_info:
-                Snackbar.make(v, "Release date " +dataModel.getFeature(), Snackbar.LENGTH_LONG)
-                        .setAction("No action", null).show();
-                break;
-        }
-    }*/
-
-
 
 }
 

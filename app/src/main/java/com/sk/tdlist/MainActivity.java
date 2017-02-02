@@ -31,7 +31,7 @@ import java.util.Vector;
 public class MainActivity extends AppCompatActivity {
 
 
-    private List<String> mainList=new ArrayList<>();
+    private List<TaskItem> mainList=new ArrayList<TaskItem>();
     private ListView mainListView=null;
     private ArrayAdapter ad=null;
     private EditText addTaskEditText=null;
@@ -46,7 +46,9 @@ public class MainActivity extends AppCompatActivity {
 
         sqlDB=openOrCreateDatabase("dbKartik12#4",MODE_PRIVATE, null);
 
-        sqlDB.execSQL("CREATE TABLE IF NOT EXISTS ToDoList(Task varchar(50) PRIMARY KEY)");
+        //sqlDB.execSQL("DROP TABLE ToDoList");
+
+        sqlDB.execSQL("CREATE TABLE IF NOT EXISTS ToDoList(Task varchar(50) PRIMARY KEY,Status char(5))");
 
 
 
@@ -59,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         if(existingTasks!=null){
             if(existingTasks.moveToFirst()){
                 do{
-                    mainList.add(existingTasks.getString(existingTasks.getColumnIndex("Task")));
+                    mainList.add( new TaskItem( existingTasks.getString( existingTasks.getColumnIndex("Task")) , Boolean.valueOf( existingTasks.getString(existingTasks.getColumnIndex("Status")) ) ) );
                 }while (existingTasks.moveToNext());
             }
         }
@@ -75,9 +77,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
 
-                final String delElem=mainList.remove(position);
+                final TaskItem delElem=mainList.remove(position);
                 ad.notifyDataSetChanged();
-                sqlDB.execSQL("DELETE FROM ToDoList WHERE Task='"+delElem+"'");
+                sqlDB.execSQL("DELETE FROM ToDoList WHERE Task='"+delElem.getTask()+"'");
 
                 final Snackbar deleteSB=Snackbar.make(view,"Task deleted",Snackbar.LENGTH_LONG);
                 deleteSB.setAction("UNDO", new View.OnClickListener() {
@@ -85,13 +87,10 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         mainList.add(position,delElem);
                         ad.notifyDataSetChanged();
-                        sqlDB.execSQL("INSERT INTO ToDoList VALUES('"+delElem+"')");
-                        //deleteSB.removeCallback(bc);
+                        sqlDB.execSQL("INSERT INTO ToDoList(Task,Status) VALUES('"+delElem.getTask()+"','"+delElem.getStatus()+"')");
                     }
                 });
                 deleteSB.setActionTextColor(getResources().getColor(R.color.colorAccent));
-
-
                 deleteSB.show();
 
             }
@@ -107,8 +106,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(!addTaskEditText.getText().toString().equals("")){
                     try{
-                        sqlDB.execSQL("INSERT INTO ToDoList VALUES('"+addTaskEditText.getText().toString()+"')");
-                        mainList.add(addTaskEditText.getText().toString());
+                        sqlDB.execSQL("INSERT INTO ToDoList VALUES('"+addTaskEditText.getText().toString()+"','false')");
+                        mainList.add( new TaskItem( addTaskEditText.getText().toString() , false ) );
                         addTaskEditText.setText("");
                         ad.notifyDataSetChanged();
                     }

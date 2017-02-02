@@ -9,7 +9,17 @@ package com.sk.tdlist;
 
 public class TaskItem {
     String Task;
-    TaskItem(String Task){
+    boolean status;
+    TaskItem(String Task,boolean status){
         this.Task=Task;
+        this.status=status;
+    }
+
+    public String getTask() {
+        return Task;
+    }
+
+    public boolean getStatus() {
+        return status;
     }
 }
