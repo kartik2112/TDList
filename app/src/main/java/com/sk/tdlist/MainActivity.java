@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
 import android.support.design.widget.BaseTransientBottomBar;
 import android.support.v7.app.AppCompatActivity;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 import android.support.design.widget.Snackbar;
 
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
@@ -29,7 +31,7 @@ import java.util.Vector;
 public class MainActivity extends AppCompatActivity {
 
 
-    private List<String> mainList=new Vector<String>();
+    private List<String> mainList=new ArrayList<>();
     private ListView mainListView=null;
     private ArrayAdapter ad=null;
     private EditText addTaskEditText=null;
@@ -46,10 +48,14 @@ public class MainActivity extends AppCompatActivity {
 
         sqlDB.execSQL("CREATE TABLE IF NOT EXISTS ToDoList(Task varchar(50) PRIMARY KEY)");
 
-        Cursor existingTasks=sqlDB.rawQuery("SELECT * FROM ToDoList ORDER BY Task",null);
+
 
         Toast.makeText(this,"Click on task to delete it!",Toast.LENGTH_SHORT).show();
 
+        /**
+         * This section retrieves data from DB and adds it to ArrayList @existingTasks
+         */
+        Cursor existingTasks=sqlDB.rawQuery("SELECT * FROM ToDoList",null);
         if(existingTasks!=null){
             if(existingTasks.moveToFirst()){
                 do{
@@ -59,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         mainListView=(ListView) findViewById(R.id.MainListView);
-        ad=new ArrayAdapter<>(this,android.R.layout.simple_list_item_multiple_choice,mainList);
+        ad=new TaskAdapter((ArrayList) mainList,getApplicationContext(),sqlDB);
 
         if(mainListView!=null){
             mainListView.setAdapter(ad);
@@ -72,12 +78,7 @@ public class MainActivity extends AppCompatActivity {
                 final String delElem=mainList.remove(position);
                 ad.notifyDataSetChanged();
                 sqlDB.execSQL("DELETE FROM ToDoList WHERE Task='"+delElem+"'");
-                /*final BaseTransientBottomBar.BaseCallback bc=new Snackbar.Callback(){
-                        @Override
-                        ublic void onDismissed(Snackbar transientBottomBar, int event) {
-                        sqlDB.execSQL("DELETE FROM ToDoList WHERE Task='"+delElem+"'");
-                    }
-                };*/
+
                 final Snackbar deleteSB=Snackbar.make(view,"Task deleted",Snackbar.LENGTH_LONG);
                 deleteSB.setAction("UNDO", new View.OnClickListener() {
                     @Override
@@ -90,7 +91,6 @@ public class MainActivity extends AppCompatActivity {
                 });
                 deleteSB.setActionTextColor(getResources().getColor(R.color.colorAccent));
 
-                //deleteSB.addCallback(bc);
 
                 deleteSB.show();
 
@@ -106,10 +106,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(!addTaskEditText.getText().toString().equals("")){
-                    sqlDB.execSQL("INSERT INTO ToDoList VALUES('"+addTaskEditText.getText().toString()+"')");
-                    mainList.add(addTaskEditText.getText().toString());
-                    addTaskEditText.setText("");
-                    ad.notifyDataSetChanged();
+                    try{
+                        sqlDB.execSQL("INSERT INTO ToDoList VALUES('"+addTaskEditText.getText().toString()+"')");
+                        mainList.add(addTaskEditText.getText().toString());
+                        addTaskEditText.setText("");
+                        ad.notifyDataSetChanged();
+                    }
+                    catch (SQLiteException e){
+                        Toast.makeText(getApplicationContext(),e+"",Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
