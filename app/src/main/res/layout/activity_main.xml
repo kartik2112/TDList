@@ -7,7 +7,11 @@
     tools:context="com.sk.tdlist.MainActivity"
     android:background="@mipmap/bg"
     android:animateLayoutChanges="true">
-
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@mipmap/bg"
+        android:scaleType="fitXY"/>
     <TextView
         android:layout_alignParentTop="true"
         android:layout_width="match_parent"
@@ -39,6 +43,7 @@
             android:layout_width="0dp"
             android:layout_weight="4"
             android:layout_marginRight="20dp"
+            android:textSize="15sp"
             android:paddingLeft="10dp"
             android:layout_height="40dp"
             android:focusableInTouchMode="true"/>
