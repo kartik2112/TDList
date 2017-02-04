@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
@@ -145,6 +146,9 @@ public class TaskAdapter extends ArrayAdapter<TaskItem> {
                  * This part will open the dialog box containing calendar_module.xml layout inflated and
                  * Set Date, Clear Date and Cancel buttons
                  */
+                Bundle b=new Bundle();
+                b.putParcelable("dataModel",dataModel);
+
                 CalendarDialogBoxFragment dF=new CalendarDialogBoxFragment();
                 dF.show(fm,"CalendarFragment");
                 Log.d("TaskAdapter","called DialogFragment");

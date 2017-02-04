@@ -1,6 +1,12 @@
 package com.sk.tdlist;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Created by karti on 02-02-2017.
@@ -9,7 +15,7 @@ import java.util.Calendar;
 // For future implementation.
 // Insignificant for current implementations
 
-public class TaskItem {
+public class TaskItem implements Parcelable{
     String Task;
     boolean status;
     String deadlineDate;
@@ -19,6 +25,24 @@ public class TaskItem {
         this.status=status;
         this.deadlineDate=deadlineDate;
     }
+
+    TaskItem(Parcel in) {
+        Task = in.readString();
+        status = in.readByte() != 0;
+        deadlineDate = in.readString();
+    }
+
+    public static final Creator<TaskItem> CREATOR = new Creator<TaskItem>() {
+        @Override
+        public TaskItem createFromParcel(Parcel in) {
+            return new TaskItem(in);
+        }
+
+        @Override
+        public TaskItem[] newArray(int size) {
+            return new TaskItem[size];
+        }
+    };
 
     public String getTask() {
         return Task;
@@ -57,5 +81,21 @@ public class TaskItem {
         this.deadlineDate = deadlineDate;
     }
 
+    public String setDeadlineDateFromMillis(long date){
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        return formatter.format(new Date(date));
+    }
 
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeStringArray(new String[] {this.Task,
+                String.valueOf(this.status),
+                this.deadlineDate});
+    }
 }
