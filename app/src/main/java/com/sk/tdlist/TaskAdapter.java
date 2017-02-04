@@ -150,6 +150,7 @@ public class TaskAdapter extends ArrayAdapter<TaskItem> {
                 b.putParcelable("dataModel",dataModel);
 
                 CalendarDialogBoxFragment dF=new CalendarDialogBoxFragment();
+                dF.setArguments(b);
                 dF.show(fm,"CalendarFragment");
                 Log.d("TaskAdapter","called DialogFragment");
             }
