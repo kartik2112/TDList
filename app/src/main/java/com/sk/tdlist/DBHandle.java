@@ -13,6 +13,8 @@ public class DBHandle {
 
         //sqlDB.execSQL("DROP TABLE ToDoList");
 
+        //sqlDB.execSQL("ALTER TABLE ToDoList ADD COLUMN DeadlineDate varchar(10)");
+
         sqlDB.execSQL("CREATE TABLE IF NOT EXISTS ToDoList(Task varchar(200) PRIMARY KEY,Status char(5))");
 
         return sqlDB;

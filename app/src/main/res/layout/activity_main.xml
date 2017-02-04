@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -25,29 +26,50 @@
         android:textColor="@color/colorPrimaryComplement"
         android:background="@color/colorPrimaryDarkAlpha"
         android:padding="40dp"/>
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/AddTaskLinearLyt"
         android:layout_below="@id/HeadingText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_margin="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
         android:weightSum="5">
-        <EditText
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/AddTaskButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="10dp"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/plus"
+            android:background="@color/colorPrimaryDarkComplementAlpha"
+            android:layout_weight="1"/>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
             android:layout_gravity="center_vertical"
-            android:background="@color/colorPrimaryComplementAlpha"
-            android:id="@+id/AddTaskEditText"
-            android:hint="Add A Task"
-            android:inputType="textCapWords"
-            android:textColorHint="@android:color/background_light"
-            android:layout_width="0dp"
-            android:layout_weight="4"
             android:layout_marginRight="20dp"
-            android:textSize="15sp"
-            android:paddingLeft="10dp"
-            android:layout_height="40dp"
-            android:focusableInTouchMode="true"/>
-        <Button
+            android:layout_toStartOf="@id/AddTaskButton"
+            android:layout_marginTop="7dp"
+            app:hintEnabled="false">
+            <EditText
+                android:layout_gravity="center_vertical"
+                android:background="@color/colorPrimaryComplementAlpha"
+                android:id="@+id/AddTaskEditText"
+                android:hint="Add A Task"
+                android:inputType="textCapWords"
+                android:paddingLeft="10dp"
+                android:textColor="@android:color/background_light"
+                android:textColorHint="#8effffff"
+                android:layout_width="match_parent"
+                android:textSize="15sp"
+                android:layout_height="40dp"
+                android:focusableInTouchMode="true"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <!--<Button
             android:layout_gravity="center_vertical"
             android:id="@+id/AddTaskButton"
             android:background="@color/colorPrimaryDarkComplementAlpha"
@@ -55,8 +77,8 @@
             android:layout_weight="1"
             android:text="+"
             android:textSize="30dp"
-            android:layout_height="50dp" />
-    </LinearLayout>
+            android:layout_height="50dp" />-->
+    </RelativeLayout>
 
     <ListView
         android:background="@color/colorPrimaryComplementAlpha"

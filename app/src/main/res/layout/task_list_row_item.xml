@@ -3,7 +3,7 @@
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:padding="10dp"
     android:orientation="horizontal"
-    android:weightSum="10">
+    android:weightSum="11">
     <CheckBox
         android:layout_weight="1"
         android:id="@+id/chckBox"
@@ -21,7 +21,13 @@
         android:textSize="15sp"
         android:gravity="center_vertical"
         android:layout_marginRight="20dp"/>
-
+    <ImageView
+        android:id="@+id/setDate"
+        android:layout_weight="1"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@android:drawable/ic_menu_my_calendar"
+        android:layout_marginRight="10dp"/>
     <ImageView
         android:layout_weight="1"
         android:id="@+id/delIcon"

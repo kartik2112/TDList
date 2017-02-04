@@ -41,7 +41,7 @@ public class TaskViewsFactory implements RemoteViewsService.RemoteViewsFactory {
         if(existingTasks!=null){
             if(existingTasks.moveToFirst()){
                 do{
-                    mainList.add( new TaskItem( existingTasks.getString( existingTasks.getColumnIndex("Task")) , Boolean.valueOf( existingTasks.getString(existingTasks.getColumnIndex("Status")) ) ) );
+                    mainList.add( new TaskItem( existingTasks.getString( existingTasks.getColumnIndex("Task")) , Boolean.valueOf( existingTasks.getString(existingTasks.getColumnIndex("Status")) ) , null ) );
                 }while (existingTasks.moveToNext());
             }
         }

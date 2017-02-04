@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
 import android.support.design.widget.BaseTransientBottomBar;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private ListView mainListView=null;
     private ArrayAdapter ad=null;
     private EditText addTaskEditText=null;
-    private Button addTaskButton=null;
+    private FloatingActionButton addTaskButton=null;
     private SQLiteDatabase sqlDB=null;
 
     @Override
@@ -54,13 +55,21 @@ public class MainActivity extends AppCompatActivity {
         if(existingTasks!=null){
             if(existingTasks.moveToFirst()){
                 do{
-                    mainList.add( new TaskItem( existingTasks.getString( existingTasks.getColumnIndex("Task")) , Boolean.valueOf( existingTasks.getString(existingTasks.getColumnIndex("Status")) ) ) );
+                    if(existingTasks.isNull(existingTasks.getColumnIndex("DeadlineDate"))){
+                        mainList.add( new TaskItem( existingTasks.getString( existingTasks.getColumnIndex("Task")) , Boolean.valueOf( existingTasks.getString(existingTasks.getColumnIndex("Status")) ) , null ) );
+                    }
+                    else{
+                        mainList.add( new TaskItem( existingTasks.getString( existingTasks.getColumnIndex("Task")) , Boolean.valueOf( existingTasks.getString(existingTasks.getColumnIndex("Status")) ) , existingTasks.getString( existingTasks.getColumnIndex("DeadlineDate")) ) );
+                    }
+
                 }while (existingTasks.moveToNext());
             }
         }
 
+        Toast.makeText(this,mainList.size()+" tasks present",Toast.LENGTH_SHORT).show();
+
         mainListView=(ListView) findViewById(R.id.MainListView);
-        ad=new TaskAdapter((ArrayList) mainList,getApplicationContext(),sqlDB);
+        ad=new TaskAdapter((ArrayList) mainList,getApplicationContext(),sqlDB,getSupportFragmentManager());
 
         if(mainListView!=null){
             mainListView.setAdapter(ad);
@@ -69,16 +78,17 @@ public class MainActivity extends AppCompatActivity {
 
 
         addTaskEditText=(EditText) findViewById(R.id.AddTaskEditText);
-        addTaskButton=(Button) findViewById(R.id.AddTaskButton);
+        addTaskButton=(FloatingActionButton) findViewById(R.id.AddTaskButton);
 
+        addTaskButton.setBackgroundResource(R.color.colorPrimaryDarkComplementAlpha);
 
         addTaskButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(!addTaskEditText.getText().toString().equals("")){
                     try{
-                        sqlDB.execSQL("INSERT INTO ToDoList VALUES('"+addTaskEditText.getText().toString()+"','false')");
-                        mainList.add( new TaskItem( addTaskEditText.getText().toString() , false ) );
+                        sqlDB.execSQL("INSERT INTO ToDoList VALUES('"+addTaskEditText.getText().toString().trim()+"','false',NULL)");
+                        mainList.add( new TaskItem( addTaskEditText.getText().toString().trim() , false , null) );
                         addTaskEditText.setText("");
                         ad.notifyDataSetChanged();
                     }
