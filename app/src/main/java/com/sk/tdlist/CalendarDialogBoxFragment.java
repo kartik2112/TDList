@@ -12,6 +12,7 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CalendarView;
+import android.widget.Toast;
 
 /**
  * Created by karti on 04-02-2017.
@@ -84,6 +85,16 @@ public class CalendarDialogBoxFragment extends DialogFragment {
             public void onSelectedDayChange(CalendarView calendarView, int year, int month, int day) {
                 sqlDB.execSQL("UPDATE ToDoList SET DeadlineDate='"+day+"/"+month+"/"+year+"' WHERE Task='"+dataModel.getTask()+"'");
                 dataModel.setDeadlineDate(day+"/"+month+"/"+year);
+
+
+                /**
+                 * Calendar handling part
+                 */
+                int noDeleted=RealCalendarModule.deleteEvent(getContext().getContentResolver(),dataModel.getTask());
+                Toast.makeText(getContext(),noDeleted+" events deleted from Calendar",Toast.LENGTH_SHORT).show();
+                RealCalendarModule.addEvent(getContext(),dataModel.getTask(),dataModel.getDeadlineDateInMillis());
+
+
                 mListener.onDialogPositiveClick(CalendarDialogBoxFragment.this,dataModel);
             }
         });
@@ -117,6 +128,16 @@ public class CalendarDialogBoxFragment extends DialogFragment {
             public void onClick(DialogInterface dialogInterface, int i) {
                 dataModel.setDeadlineDate(null);
                 sqlDB.execSQL("UPDATE ToDoList SET DeadlineDate=NULL WHERE Task='"+dataModel.getTask()+"'");
+
+
+                /**
+                 * Deleting existing events from calendar
+                 */
+                int noDeleted=RealCalendarModule.deleteEvent(getContext().getContentResolver(),dataModel.getTask());
+                Toast.makeText(getContext(),noDeleted+" events deleted from Calendar",Toast.LENGTH_SHORT).show();
+
+
+
                 getDialog().dismiss();
                 mListener.onDialogNeutralClick(CalendarDialogBoxFragment.this,dataModel);
             }
@@ -129,6 +150,15 @@ public class CalendarDialogBoxFragment extends DialogFragment {
                     if(dataModel.getDeadlineDate()!=null){
                         dataModel.setDeadlineDate(oldDate);
                         sqlDB.execSQL("UPDATE ToDoList SET DeadlineDate=NULL WHERE Task='"+dataModel.getTask()+"'");
+
+
+                        /**
+                         * Deleting existing events from calendar
+                         */
+                        int noDeleted=RealCalendarModule.deleteEvent(getContext().getContentResolver(),dataModel.getTask());
+                        Toast.makeText(getContext(),noDeleted+" events deleted from Calendar",Toast.LENGTH_SHORT).show();
+
+
                         getDialog().dismiss();
                         mListener.onDialogNegativeClick(CalendarDialogBoxFragment.this,dataModel);
                     }
@@ -137,6 +167,17 @@ public class CalendarDialogBoxFragment extends DialogFragment {
                     if(!oldDate.equals(dataModel.getDeadlineDate())){
                         dataModel.setDeadlineDate(oldDate);
                         sqlDB.execSQL("UPDATE ToDoList SET DeadlineDate='"+oldDate+"' WHERE Task='"+dataModel.getTask()+"'");
+
+
+
+                        /**
+                         * Calendar handling part
+                         */
+                        int noDeleted=RealCalendarModule.deleteEvent(getContext().getContentResolver(),dataModel.getTask());
+                        Toast.makeText(getContext(),noDeleted+" events deleted from Calendar",Toast.LENGTH_SHORT).show();
+                        RealCalendarModule.addEvent(getContext(),dataModel.getTask(),TaskItem.getDeadlineDateInMillis(oldDate));
+
+
                         getDialog().dismiss();
                         mListener.onDialogNegativeClick(CalendarDialogBoxFragment.this,dataModel);
                     }
