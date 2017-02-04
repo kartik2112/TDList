@@ -89,7 +89,13 @@ public class CalendarDialogBoxFragment extends DialogFragment {
         });
 
         String fetchedDeadlineDate=getArguments().getString("deadlineDate");
-        oldDate=new String(fetchedDeadlineDate);
+        if(fetchedDeadlineDate==null){
+            oldDate=null;
+        }
+        else{
+            oldDate=new String(fetchedDeadlineDate);
+        }
+
         if(fetchedDeadlineDate!=null){
             calendarView.setDate(TaskItem.getDeadlineDateInMillis(fetchedDeadlineDate));
         }
@@ -119,12 +125,23 @@ public class CalendarDialogBoxFragment extends DialogFragment {
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                if(!oldDate.equals(dataModel.getDeadlineDate())){
-                    dataModel.setDeadlineDate(oldDate);
-                    sqlDB.execSQL("UPDATE ToDoList SET DeadlineDate='"+oldDate+"' WHERE Task='"+dataModel.getTask()+"'");
-                    getDialog().dismiss();
-                    mListener.onDialogNegativeClick(CalendarDialogBoxFragment.this,dataModel);
+                if(oldDate==null){
+                    if(dataModel.getDeadlineDate()!=null){
+                        dataModel.setDeadlineDate(oldDate);
+                        sqlDB.execSQL("UPDATE ToDoList SET DeadlineDate=NULL WHERE Task='"+dataModel.getTask()+"'");
+                        getDialog().dismiss();
+                        mListener.onDialogNegativeClick(CalendarDialogBoxFragment.this,dataModel);
+                    }
                 }
+                else{
+                    if(!oldDate.equals(dataModel.getDeadlineDate())){
+                        dataModel.setDeadlineDate(oldDate);
+                        sqlDB.execSQL("UPDATE ToDoList SET DeadlineDate='"+oldDate+"' WHERE Task='"+dataModel.getTask()+"'");
+                        getDialog().dismiss();
+                        mListener.onDialogNegativeClick(CalendarDialogBoxFragment.this,dataModel);
+                    }
+                }
+
                 getDialog().cancel();
             }
         });
