@@ -45,6 +45,7 @@ public class TaskAdapter extends ArrayAdapter<TaskItem> {
         ImageView delIcon;
         ImageView calendarIcon;
         CheckBox cbox;
+        TextView dateView;
     }
 
 
@@ -77,6 +78,7 @@ public class TaskAdapter extends ArrayAdapter<TaskItem> {
             viewHolder.delIcon = (ImageView) convertView.findViewById(R.id.delIcon);
             viewHolder.cbox = (CheckBox) convertView.findViewById(R.id.chckBox);
             viewHolder.calendarIcon=(ImageView) convertView.findViewById(R.id.setDate);
+            viewHolder.dateView=(TextView) convertView.findViewById(R.id.dateView);
 
             result=convertView;
 
@@ -92,6 +94,12 @@ public class TaskAdapter extends ArrayAdapter<TaskItem> {
         lastPosition = position;
 
         viewHolder.taskName.setText(dataModel.getTask());
+        if(dataModel.getDeadlineDate()==null){
+            viewHolder.dateView.setVisibility(View.GONE);
+        }
+        else{
+            viewHolder.dateView.setText(dataModel.getDeadlineDate());
+        }
         viewHolder.cbox.setChecked(dataModel.getStatus());
 
         viewHolder.cbox.setOnClickListener(new View.OnClickListener() {
