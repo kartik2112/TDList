@@ -7,4 +7,6 @@
     <color name="colorPrimaryComplementAlpha">#499cf7e6</color>
     <color name="colorPrimaryDarkComplementAlpha">#8c14dccf</color>
     <color name="colorAccent">#ff4081</color>
+    <color name="colorSecondary">#f378aaaf</color>
+    <color name="colorTertiary">#cb5e949c</color>
 </resources>

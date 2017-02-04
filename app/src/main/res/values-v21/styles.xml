@@ -11,5 +11,8 @@
         <item name="android:textColorPrimary">@android:color/background_light</item>
         <item name="android:colorAccent">@color/colorAccent</item>
         <item name="android:colorButtonNormal">#1723ff</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="android:textColorSecondary">@color/colorSecondary</item>
+        <item name="android:textColorTertiary">@color/colorTertiary</item>
     </style>
 </resources>
