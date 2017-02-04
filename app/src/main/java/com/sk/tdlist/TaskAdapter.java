@@ -99,6 +99,7 @@ public class TaskAdapter extends ArrayAdapter<TaskItem> {
         }
         else{
             viewHolder.dateView.setText(dataModel.getDeadlineDate());
+            viewHolder.dateView.setVisibility(View.VISIBLE);
         }
         viewHolder.cbox.setChecked(dataModel.getStatus());
 
@@ -130,6 +131,15 @@ public class TaskAdapter extends ArrayAdapter<TaskItem> {
 
 
                 /**
+                 * This part deletes event from calendar
+                 */
+                int noDeleted=RealCalendarModule.deleteEvent(getContext().getContentResolver(),delElem.getTask());
+                Toast.makeText(getContext(),noDeleted+" events deleted from Calendar",Toast.LENGTH_SHORT).show();
+
+
+
+
+                /**
                  * Code for Snackbar display and UNDO functionality
                  */
                 final Snackbar deleteSB=Snackbar.make(view,"Task deleted",Snackbar.LENGTH_LONG);
@@ -139,7 +149,14 @@ public class TaskAdapter extends ArrayAdapter<TaskItem> {
                         dataSet.add(positionOfTaskInList,delElem);
                         notifyDataSetChanged();
                         sqlDB.execSQL("INSERT INTO ToDoList VALUES('"+delElem.getTask()+"','"+delElem.getStatus()+"','"+delElem.getDeadlineDate()+"')");
-                        //deleteSB.removeCallback(bc);
+
+
+                        /**
+                         * Reinserting deleted event back into calendar
+                         */
+                        RealCalendarModule.addEvent(getContext(),delElem.getTask(),delElem.getDeadlineDateInMillis());
+
+
                     }
                 });
                 deleteSB.setActionTextColor(getContext().getResources().getColor(R.color.colorAccent));
