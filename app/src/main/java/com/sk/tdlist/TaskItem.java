@@ -5,8 +5,10 @@ import android.os.Parcelable;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by karti on 02-02-2017.
@@ -71,6 +73,21 @@ public class TaskItem implements Parcelable{
         return calendar.getTimeInMillis();
     }
 
+    public static long getDeadlineDateInMillis(String deadlineDate) {
+        String parts[] = deadlineDate.split("/");
+
+        int day = Integer.parseInt(parts[0]);
+        int month = Integer.parseInt(parts[1]);
+        int year = Integer.parseInt(parts[2]);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, year);
+        calendar.set(Calendar.MONTH, month);
+        calendar.set(Calendar.DAY_OF_MONTH, day);
+
+        return calendar.getTimeInMillis();
+    }
+
 
 
     public void setStatus(boolean status) {
@@ -97,5 +114,14 @@ public class TaskItem implements Parcelable{
         parcel.writeStringArray(new String[] {this.Task,
                 String.valueOf(this.status),
                 this.deadlineDate});
+    }
+
+    public static int findTaskPosition(ArrayList<TaskItem> mainList,String taskName){
+        for(int i=0;i<mainList.size();i++){
+            if(mainList.get(i).getTask()==taskName){
+                return i;
+            }
+        }
+        return -1;
     }
 }

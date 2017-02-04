@@ -8,9 +8,11 @@ import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
 import android.support.design.widget.BaseTransientBottomBar;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -29,7 +31,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements CalendarDialogBoxFragment.NoticeDialogListener{
 
 
     private List<TaskItem> mainList=new ArrayList<TaskItem>();
@@ -100,5 +102,33 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    @Override
+    public void onDialogPositiveClick(DialogFragment dialog, TaskItem dataModel) {
+        int position=TaskItem.findTaskPosition((ArrayList) mainList,dataModel.getTask());
+        Log.d("MainActivity",mainList.get(position).getDeadlineDate()+", new: "+dataModel.getDeadlineDate());
+        mainList.get(position).setDeadlineDate(dataModel.getDeadlineDate());
+        ad.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onDialogNeutralClick(DialogFragment dialog, TaskItem dataModel) {
+        if(dataModel.getDeadlineDate()!=null){
+            Toast.makeText(getApplicationContext(),"Non null deadline date passed through onDialogNeutralClick",Toast.LENGTH_LONG).show();
+            return;
+        }
+        int position=TaskItem.findTaskPosition((ArrayList) mainList,dataModel.getTask());
+        Log.d("MainActivity",mainList.get(position).getDeadlineDate()+", new: "+dataModel.getDeadlineDate());
+        mainList.get(position).setDeadlineDate(null);
+        ad.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onDialogNegativeClick(DialogFragment dialog, TaskItem dataModel) {
+        int position=TaskItem.findTaskPosition((ArrayList) mainList,dataModel.getTask());
+        Log.d("MainActivity",mainList.get(position).getDeadlineDate()+", new: "+dataModel.getDeadlineDate());
+        mainList.get(position).setDeadlineDate(dataModel.getDeadlineDate());
+        ad.notifyDataSetChanged();
     }
 }

@@ -148,6 +148,7 @@ public class TaskAdapter extends ArrayAdapter<TaskItem> {
                  */
                 Bundle b=new Bundle();
                 b.putParcelable("dataModel",dataModel);
+                b.putString("deadlineDate",dataModel.getDeadlineDate());
 
                 CalendarDialogBoxFragment dF=new CalendarDialogBoxFragment();
                 dF.setArguments(b);
