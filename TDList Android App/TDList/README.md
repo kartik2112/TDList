@@ -1,5 +1,4 @@
-# TDList
-Todo List Android Application
+# TDList Android App
 
 ### Currently Offered Features:
 * Add Tasks
