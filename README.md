@@ -1,15 +1,11 @@
-# TDList
-Todo List Android Application
+# TDList Android and Web App
 
-### Currently Offered Features:
-* Add Tasks
-* Delete and Undo Delete Tasks (Using Snackbar)
-* Mark tasks as completed
-* Set Deadlines to Tasks
-* Setting deadlines adds 'All-Day' events to Calendar
-* Widget showing pending tasks
+* Android App is working independently currently
+* Web App is being implemented
 
-### Proposed Features (Not Yet implemented):
-* Network suppoort
-* Priority assignment
-* Adding subtasks
+_Currently it will be designed for only one account. But in the future, multiple accounts can be created on the hosted site._
+
+###Screenshots:
+#### Android App
+![App Home Screen](/TDList Android App/Screenshots/App Home Screen v1.2.2.png?raw=true)
+![App Widget](/TDList Android App/Screenshots/App Widget v1.2.2.png?raw=true)
