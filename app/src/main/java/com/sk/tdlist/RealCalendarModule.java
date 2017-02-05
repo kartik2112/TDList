@@ -40,8 +40,8 @@ public class RealCalendarModule {
          * Event was being added one day before expected.
          * To solve it 1 day is being added to @startTimeMillis
          */
-        event.put(CalendarContract.Events.DTSTART, startTimeMillis + TimeUnit.DAYS.toMillis(1));
-        event.put(CalendarContract.Events.DTEND, startTimeMillis + TimeUnit.DAYS.toMillis(1) + 36000000);
+        event.put(CalendarContract.Events.DTSTART, startTimeMillis);
+        event.put(CalendarContract.Events.DTEND, startTimeMillis + 36000000);
         event.put(CalendarContract.Events.ALL_DAY, 1);   // 0 for false, 1 for true
         event.put(CalendarContract.Events.HAS_ALARM, 1); // 0 for false, 1 for true
 
