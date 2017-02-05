@@ -14,6 +14,6 @@
 * Adding subtasks
 
 ###Screenshots:
-#### Android App
-![App Home Screen](/Screenshots/App Home Screen v1.2.2.png?raw=true)
-![App Widget](/Screenshots/App Widget v1.2.2.png?raw=true)
+
+![App Home Screen](Screenshots/App Home Screen v1.2.2.png?raw=true)
+![App Widget](Screenshots/App Widget v1.2.2.png?raw=true)
