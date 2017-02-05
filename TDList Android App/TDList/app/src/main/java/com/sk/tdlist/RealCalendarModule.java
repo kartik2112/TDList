@@ -27,7 +27,7 @@ public class RealCalendarModule {
 
     public static void addEvent(Context context,String title,long startTimeMillis){
         /**
-         * Reference: http://stackoverflow.com/questions/16473537/add-calendar-event-without-opening-calendar
+         * Reference: http://stackoverflow.com/a/16474227
          */
         ContentValues event = new ContentValues();
         event.put(CalendarContract.Events.CALENDAR_ID, CALENDAR_ID);
@@ -54,15 +54,14 @@ public class RealCalendarModule {
          */
         String timeZone=TimeZone.getTimeZone("UTC").getID();
         //String timeZone = TimeZone.getDefault().getID();
-
-
         event.put(CalendarContract.Events.EVENT_TIMEZONE, timeZone);
+
 
         String baseUriString;
         if (Build.VERSION.SDK_INT >= 8) {
             baseUriString = "content://com.android.calendar/";
         } else {
-            baseUriString = "content://calendar/events";
+            baseUriString = "content://calendar/";
         }
 
         Uri baseUri;
@@ -70,6 +69,11 @@ public class RealCalendarModule {
 
         Uri eventAdded=context.getContentResolver().insert(baseUri, event);    //This statement adds the event to calendar without reminder
 
+
+        /**
+         * Reminder adding part
+         * Reference: http://stackoverflow.com/a/5976386
+         */
         Uri REMINDERS_URI = Uri.parse(baseUriString + "reminders");
         event = new ContentValues();
         event.put( "event_id", Long.parseLong(eventAdded.getLastPathSegment()));
