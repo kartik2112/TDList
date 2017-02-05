@@ -154,7 +154,9 @@ public class TaskAdapter extends ArrayAdapter<TaskItem> {
                         /**
                          * Reinserting deleted event back into calendar
                          */
-                        RealCalendarModule.addEvent(getContext(),delElem.getTask(),delElem.getDeadlineDateInMillis());
+                        if(delElem.getDeadlineDate()!=null){
+                            RealCalendarModule.addEvent(getContext(),delElem.getTask(),delElem.getDeadlineDateInMillis());
+                        }
 
 
                     }
