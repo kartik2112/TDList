@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 /**
  * Created by karti on 02-02-2017.
@@ -59,21 +60,7 @@ public class TaskItem implements Parcelable{
     }
 
     public long getDeadlineDateInMillis() {
-        String parts[] = deadlineDate.split("/");
-
-        int day = Integer.parseInt(parts[0]);
-        int month = Integer.parseInt(parts[1]);
-        int year = Integer.parseInt(parts[2]);
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.YEAR, year);
-        calendar.set(Calendar.MONTH, month);
-        calendar.set(Calendar.DAY_OF_MONTH, day);
-        calendar.set(Calendar.MINUTE,0);
-        calendar.set(Calendar.SECOND,0);
-        calendar.set(Calendar.MILLISECOND,0);
-
-        return calendar.getTimeInMillis();
+        return getDeadlineDateInMillis(this.deadlineDate);
     }
 
     public static long getDeadlineDateInMillis(String deadlineDate) {
@@ -84,6 +71,15 @@ public class TaskItem implements Parcelable{
         int year = Integer.parseInt(parts[2]);
 
         Calendar calendar = Calendar.getInstance();
+
+        /**
+         * UTC Timezone is required to be set for proper synchronization between obtaining time in millis for a date
+         * and setting the reminder on the exact same date in the calendar
+         */
+        //calendar.setTimeZone(TimeZone.getDefault());
+        calendar.setTimeZone(TimeZone.getTimeZone("UTC"));
+
+
         calendar.set(Calendar.YEAR, year);
         calendar.set(Calendar.MONTH, month);
         calendar.set(Calendar.DAY_OF_MONTH, day);
