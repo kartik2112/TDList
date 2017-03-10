@@ -23,12 +23,13 @@ import java.util.concurrent.TimeUnit;
 public class RealCalendarModule {
     private final static int CALENDAR_ID=1;
     public final static String description="This event has been added via TDList App";
+    public final static long REMINDER_TIME=6*60;
 
     public static void addEvent(Context context,String title,long startTimeMillis){
         /**
-         * Reference: http://stackoverflow.com/questions/16473537/add-calendar-event-without-opening-calendar
+         * Reference: http://stackoverflow.com/a/16474227
          */
-        final ContentValues event = new ContentValues();
+        ContentValues event = new ContentValues();
         event.put(CalendarContract.Events.CALENDAR_ID, CALENDAR_ID);
 
         event.put(CalendarContract.Events.TITLE, title);
@@ -45,25 +46,45 @@ public class RealCalendarModule {
         event.put(CalendarContract.Events.ALL_DAY, 1);   // 0 for false, 1 for true
         event.put(CalendarContract.Events.HAS_ALARM, 1); // 0 for false, 1 for true
 
-        String timeZone = TimeZone.getDefault().getID();
+        Log.d("RealCalendarModule","startTimeMillis: "+startTimeMillis);
+
+        /**
+         * UTC Timezone is required to be set for proper synchronization between obtaining time in millis for a date
+         * and setting the reminder on the exact same date in the calendar
+         */
+        String timeZone=TimeZone.getTimeZone("UTC").getID();
+        //String timeZone = TimeZone.getDefault().getID();
         event.put(CalendarContract.Events.EVENT_TIMEZONE, timeZone);
 
-        Uri baseUri;
+
+        String baseUriString;
         if (Build.VERSION.SDK_INT >= 8) {
-            baseUri = Uri.parse("content://com.android.calendar/events");
+            baseUriString = "content://com.android.calendar/";
         } else {
-            baseUri = Uri.parse("content://calendar/events");
+            baseUriString = "content://calendar/";
         }
 
-        context.getContentResolver().insert(baseUri, event);
+        Uri baseUri;
+        baseUri=Uri.parse(baseUriString+"events");
+
+        Uri eventAdded=context.getContentResolver().insert(baseUri, event);    //This statement adds the event to calendar without reminder
+
+
+        /**
+         * Reminder adding part
+         * Reference: http://stackoverflow.com/a/5976386
+         */
+        Uri REMINDERS_URI = Uri.parse(baseUriString + "reminders");
+        event = new ContentValues();
+        event.put( "event_id", Long.parseLong(eventAdded.getLastPathSegment()));
+        event.put( "method", 1 );
+        event.put( "minutes", REMINDER_TIME );
+        context.getContentResolver().insert( REMINDERS_URI, event );   //This statement adds the reminder part
 
         Log.d("TDCustomRealCalendar","Calendar Event added");
     }
 
     public static int deleteEvent(ContentResolver resolver,String eventTitle){
-        /**
-         * Reference:
-         */
         Uri eventsUri;
 
         Cursor cursor;
