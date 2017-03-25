@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">TDList</string>
+    <string-array name="branches">
+        <item>COMPS</item>
+        <item>EXTC</item>
+        <item>ETRX</item>
+        <item>MECH</item>
+        <item>IT</item>
+    </string-array>
 </resources>
