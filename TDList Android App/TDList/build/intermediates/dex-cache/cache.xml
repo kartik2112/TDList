@@ -43,7 +43,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="de18a3fa667b81d19571e9cee9e23548901c1623">
+        sha1="36f38365edda1ecdadc37e480749477544e2ff57">
         <dex dex="F:\OneDrive\Projects\Proj Github\TDList\TDList Android App\TDList\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_97c5c16de302b2057a4a423b00cd7e17b9ac39d8\classes.dex" />
     </item>
     <item
@@ -124,7 +124,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="d60962e98e430ed5306085b096826d1d581e88f6">
+        sha1="c34f1ef587e8cd44cf8c7da53fd446369f6fb061">
         <dex dex="F:\OneDrive\Projects\Proj Github\TDList\TDList Android App\TDList\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_30c5098bf4d80c4e88d258c9e90085db292be0d9\classes.dex" />
     </item>
     <item
