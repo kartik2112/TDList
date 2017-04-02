@@ -5,15 +5,17 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:animateLayoutChanges="true"
     android:background="@mipmap/bg"
-    tools:context="com.sk.tdlist.MainActivity">
-
-    <ImageView
+    tools:context="com.sk.tdlist.MainActivity"
+    android:animateLayoutChanges="true">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="fitXY"
-        android:src="@mipmap/bg" />
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
     <TextView
         android:id="@+id/HeadingText"
@@ -23,7 +25,7 @@
         android:background="@color/colorPrimaryDarkAlpha"
         android:fontFamily="cursive"
         android:gravity="center_horizontal"
-        android:padding="40dp"
+        android:layout_marginTop="40dp"
         android:text="To Do List"
         android:textColor="@color/colorPrimaryComplement"
         android:textSize="40sp"

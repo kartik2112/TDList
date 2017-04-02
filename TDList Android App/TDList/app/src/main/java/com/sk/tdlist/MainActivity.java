@@ -10,9 +10,12 @@ import android.support.design.widget.BaseTransientBottomBar;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -45,6 +48,9 @@ public class MainActivity extends AppCompatActivity implements CalendarDialogBox
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+
 
         sqlDB=DBHandle.createDBTables(this);
 
@@ -130,5 +136,12 @@ public class MainActivity extends AppCompatActivity implements CalendarDialogBox
         Log.d("MainActivity",mainList.get(position).getDeadlineDate()+", new: "+dataModel.getDeadlineDate());
         mainList.get(position).setDeadlineDate(dataModel.getDeadlineDate());
         ad.notifyDataSetChanged();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_layout, menu);
+        return true;
     }
 }
