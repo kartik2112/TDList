@@ -13,7 +13,6 @@
 * Priority assignment
 * Adding subtasks
 
-###Screenshots:
+### Screenshots:
 
-![App Home Screen](Screenshots/App Home Screen v1.2.2.png?raw=true)
-![App Widget](Screenshots/App Widget v1.2.2.png?raw=true)
+<img src="Screenshots/App Home Screen v1.2.2.png"/> <img src="Screenshots/App Widget v1.2.2.png"/>
