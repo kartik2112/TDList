@@ -2,57 +2,60 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp"
     android:orientation="horizontal"
+    android:padding="10dp"
     android:weightSum="11">
+
     <CheckBox
-        android:layout_weight="1"
         android:id="@+id/chckBox"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:gravity="center_vertical|center_horizontal"
-        android:layout_marginRight="10dp"/>
+        android:layout_marginRight="10dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical|center_horizontal" />
+
     <RelativeLayout
-        android:layout_weight="8"
         android:layout_width="match_parent"
         android:layout_height="40sp"
+        android:layout_gravity="center_vertical"
         android:layout_marginRight="20dp"
-        android:layout_gravity="center_vertical">
+        android:layout_weight="8">
 
         <TextView
             android:id="@+id/txtView"
-            android:text="Lorem Ipsum Doler"
-            android:textColor="@android:color/background_light"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textSize="15sp"
+            android:layout_alignParentStart="true"
             android:gravity="start"
-            android:layout_alignParentStart="true" />
+            android:text="Lorem Ipsum Doler"
+            android:textColor="@android:color/background_light"
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/dateView"
-            android:text="Deadline Date:"
-            android:textColor="@color/colorSecondary"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="bottom"
-            android:textSize="13sp"/>
+            android:text="Deadline Date:"
+            android:textColor="@color/colorSecondary"
+            android:textSize="13sp" />
     </RelativeLayout>
 
     <ImageView
-        android:layout_gravity="center_vertical"
         android:id="@+id/setDate"
-        android:layout_weight="1"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:src="@android:drawable/ic_menu_my_calendar"
-        android:layout_marginRight="10dp"/>
-    <ImageView
         android:layout_gravity="center_vertical"
+        android:layout_marginRight="10dp"
         android:layout_weight="1"
+        android:src="@android:drawable/ic_menu_my_calendar" />
+
+    <ImageView
         android:id="@+id/delIcon"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:src="@mipmap/del_icon"
-        android:layout_alignParentRight="true"/>
+        android:layout_alignParentRight="true"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:src="@mipmap/del_icon" />
 </LinearLayout>
