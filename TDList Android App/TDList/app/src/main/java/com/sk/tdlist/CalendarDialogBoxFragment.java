@@ -83,8 +83,12 @@ public class CalendarDialogBoxFragment extends DialogFragment {
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(CalendarView calendarView, int year, int month, int day) {
-                sqlDB.execSQL("UPDATE ToDoList SET DeadlineDate='"+day+"/"+month+"/"+year+"' WHERE Task='"+dataModel.getTask()+"'");
-                dataModel.setDeadlineDate(day+"/"+month+"/"+year);
+
+                /**
+                 * Here month ranges from 0 to 11. Thus we need to add 1 to month value
+                 */
+                sqlDB.execSQL("UPDATE ToDoList SET DeadlineDate='"+day+"/"+(month+1)+"/"+year+"' WHERE Task='"+dataModel.getTask()+"'");
+                dataModel.setDeadlineDate(day+"/"+(month+1)+"/"+year);
 
 
                 /**
