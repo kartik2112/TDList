@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="C:\Users\karti\.android\build-cache\769fdae0fe5d57484ec0660621d8b052f72b44a4\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="1630658fbc2d222b988603c27b4a4249586fbfe7">
+        <dex dex="F:\OneDrive\Projects\Proj Github\TDList\TDList Android App\TDList\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_5c21b8b8d823ce341dc81cbe7ef0b25120995874\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\karti\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\25.1.0\support-annotations-25.1.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="64cb6b229a8bdfd907bc8dd46839a0053e4c018d">
+        <dex dex="F:\OneDrive\Projects\Proj Github\TDList\TDList Android App\TDList\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-25.1.0_fc4f2ad9958c27cfb952c162f1ef5a1848b00d3b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\karti\.android\build-cache\7129fe8445686452c3ae496fd706220d64c8ab76\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0a0ef86b7fa568a52bf6214a0326ca1f1d618da7">
+        <dex dex="F:\OneDrive\Projects\Proj Github\TDList\TDList Android App\TDList\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_95e2324d2daf11a237c38c4630bda4d66e6dae9f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\karti\.android\build-cache\67c4e969bee30165407d5c559cb9b3f3b74c5cac\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e79aa3d9a16f8c9f16377c0608de70a8f31e5d80">
+        <dex dex="F:\OneDrive\Projects\Proj Github\TDList\TDList Android App\TDList\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_81567af3d35e466c919f82e00fdca7cfb7dc2643\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\karti\.android\build-cache\453f8e60f8c001898f883923e2c40eb4046e3a77\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="2a53c4f3518116b8c6aee0e477233f0f7da8616f">
+        <dex dex="F:\OneDrive\Projects\Proj Github\TDList\TDList Android App\TDList\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_0da67db1d43babcfaecc62d2611d97661b812978\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\karti\.android\build-cache\e59c52212e0a314ce06a48d61f03f6874b8d3870\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="30103d98fa5ed824b54af839c85e2111f9bde8ec">
+        <dex dex="F:\OneDrive\Projects\Proj Github\TDList\TDList Android App\TDList\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_c1f9a2143217dfcac8db17640fd15e331c0774c5\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\karti\.android\build-cache\d3d3da4c4662700a21d68e76539cf8f3556da8cb\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b266c8faa5af72e579b9da36ef35053ffed6ac64">
+        <dex dex="F:\OneDrive\Projects\Proj Github\TDList\TDList Android App\TDList\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_bba1d4e886469017db974f806e67764d484e2742\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\OneDrive\Projects\Proj Github\TDList\TDList Android App\TDList\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="8762598258b915127f8d8b6e99cc5ac16438d8d3">
+        <dex dex="F:\OneDrive\Projects\Proj Github\TDList\TDList Android App\TDList\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_97c5c16de302b2057a4a423b00cd7e17b9ac39d8\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\karti\.android\build-cache\537de3ca9e54aac1628c351ec3fe0e50ec16ec6b\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="F:\OneDrive\Projects\Proj Github\TDList\TDList Android App\TDList\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_01d6e96d5ec57fb6d0b47c0de48e96a61ef2afc0\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\karti\.android\build-cache\34983c440a8e8bfc05ee223da34d5697109facbb\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ca3c7aa31e2726a400a6e552b93cb9f63c9a1e6d">
+        <dex dex="F:\OneDrive\Projects\Proj Github\TDList\TDList Android App\TDList\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_37d79f06b7e87c80200c9fc9844e2b2f3a2a717f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\karti\.android\build-cache\4c955156add2c55408d8bd52832ce6bfbc6ac2f8\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d38084015027549951cbaea5d5f6fb795cc81151">
+        <dex dex="F:\OneDrive\Projects\Proj Github\TDList\TDList Android App\TDList\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_8988189afd908bf9ae875a14e3767efa6c251a39\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\karti\.android\build-cache\c63465f60f4c206b7e6bcb2f4c60c8f001a61516\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="aee64634871d88a419d59eb743c1258a60f19700">
+        <dex dex="F:\OneDrive\Projects\Proj Github\TDList\TDList Android App\TDList\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_20e46f994169246d8e46328d98d34281e6a4a67b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\karti\.android\build-cache\b02e1fa1962717d30f5682554d6ca1bb03aeb021\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6fb6ac3e8d3b9013819920d9ea11f3803c4c0033">
+        <dex dex="F:\OneDrive\Projects\Proj Github\TDList\TDList Android App\TDList\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_db89f97c91d12298fc46882330799938b6331824\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\OneDrive\Projects\Proj Github\TDList\TDList Android App\TDList\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
+        <dex dex="F:\OneDrive\Projects\Proj Github\TDList\TDList Android App\TDList\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_30c5098bf4d80c4e88d258c9e90085db292be0d9\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\karti\.android\build-cache\b22050cbee7571c7050636ccde19d117f3ba4abe\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="f02263e35e52668dd17b73bf961437e3d562b35f">
+        <dex dex="F:\OneDrive\Projects\Proj Github\TDList\TDList Android App\TDList\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_b6f39f52f66fc33a795ad1ac09f644e91e0f245e\classes.dex" />
+    </item>
+
+</items>
